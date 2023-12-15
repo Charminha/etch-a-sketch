@@ -1,8 +1,10 @@
 .sketchpad {
+    display: flex;
     border-width: 16px;
     border-style: solid;
     border-color: black;
     width: 512px;
     height: 512px;
-    background-color: bisque;
+    background-color: grey;
+    
 }
