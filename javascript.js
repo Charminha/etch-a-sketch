@@ -1,14 +1,38 @@
 const sketchpad = document.querySelector('.sketchpad');
+let numberOfSquares = 16;
+const changeSizeButton = document.querySelector('.change-size');
+changeSizeButton.addEventListener('click', () => {
+    //popup window asks for number of squares
+    numberOfSquares = prompt("Please enter your desired grid size", 16);
+    // make new grid with updated size
+    makeNewGrid();
+});
 
-// create rows of pixel grid 
-for (i=0; i<15; i++){
-    pixelRow = document.createElement('div');
-    pixelRow.setAttribute('style', 'display: flex; flex-direction: column; flex-grow: 1;');
-    // fill each row with 16 pixels
-    for (j=0; j<15; j++){
-        const pixel = document.createElement('div');
-        pixel.setAttribute('style', 'width: 32px; height: 32px; border: 1px dotted black; background-color: white; flex-grow: 1;');   
-        pixelRow.appendChild(pixel);
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
     }
-    sketchpad.appendChild(pixelRow);
 }
+
+function makeNewGrid(){
+    removeAllChildNodes(sketchpad);
+    // create rows of square grid 
+    for (i=0; i<numberOfSquares-1; i++){
+        squareRow = document.createElement('div');
+        squareRow.setAttribute('style', 'display: flex; flex-direction: column; flex-grow: 1;');
+        // fill each row with 16 squares
+        for (j=0; j<numberOfSquares-1; j++){
+            const square = document.createElement('div');
+            square.setAttribute('style', 'border: 1px dotted black; background-color: white; flex-grow: 1;');   
+            square.addEventListener('mouseover', () => {
+                square.setAttribute('style', 'border: 1px dotted black; background-color: blue; flex-grow: 1;');
+                console.log("hover change color");
+            });
+            squareRow.appendChild(square);
+            
+        }
+        sketchpad.appendChild(squareRow);
+    }
+}
+
+makeNewGrid();
