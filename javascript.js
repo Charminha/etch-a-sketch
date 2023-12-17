@@ -1,10 +1,19 @@
 const sketchpad = document.querySelector('.sketchpad');
 let numberOfSquares = 16;
 const changeSizeButton = document.querySelector('.change-size');
+const clearGridButton = document.querySelector('.clear');
 changeSizeButton.addEventListener('click', () => {
     //popup window asks for number of squares
     numberOfSquares = prompt("Please enter your desired grid size", 16);
+    // if user enters number greater than 100 size is automatically set to 100
+    if (numberOfSquares > 100){
+        numberOfSquares = 100;
+    }
     // make new grid with updated size
+    makeNewGrid();
+});
+
+clearGridButton.addEventListener('click', () => {
     makeNewGrid();
 });
 
